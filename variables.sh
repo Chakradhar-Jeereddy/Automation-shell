@@ -6,5 +6,5 @@ echo ${a}times
 echo $b
 
 #{} are needed if variable is combined with other variables without space
-DATE=2202-03-12
+DATE=$date
 echo Today date is $DATE
