@@ -10,9 +10,12 @@ echo $b
 DATE=2202-03-12
 echo Today date is $DATE
 
+#()command substitution
+
 DATE=$(date +%F)
 echo Today date is $DATE
 
+#(()) - arthimetic substitution
 x=10
 y=20
 ADD=$(($x+$y))
