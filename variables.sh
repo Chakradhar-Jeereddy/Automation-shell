@@ -22,5 +22,7 @@ ADD=$(($x+$y))
 echo ADD = $ADD
 
 c=(19 small big hello)
-the value of arrays is ${c[*]}
-the fist value of array is ${c[0]}
+echo the value of arrays is ${c[*]}
+echo the fist value of array is ${c[0]}
+
+echo variable=$template
