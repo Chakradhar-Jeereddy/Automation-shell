@@ -20,3 +20,7 @@ x=10
 y=20
 ADD=$(($x+$y))
 echo ADD = $ADD
+
+c=(19 small big hello)
+the value of arrays is ${c[*]}
+the fist value of array is ${c[0]}
