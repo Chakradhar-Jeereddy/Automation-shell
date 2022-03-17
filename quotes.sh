@@ -3,6 +3,6 @@
 echo 'Apples cost is $100'
 echo "Apples cost is \$100"
 
-Training = devops
+Training=devops
 echo 'Training = ${Training}'
 echo "Training = ${Training}"
