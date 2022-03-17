@@ -4,5 +4,5 @@ echo 'Apples cost is $100'
 echo "Apples cost is \$100"
 
 Training = devops
-Training = '${Training}'
-Training = "${Training}"
+echo 'Training = ${Training}'
+echo "Training = ${Training}"
