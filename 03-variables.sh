@@ -40,5 +40,4 @@ echo All values of arry   = ${c[*]}
 #By default variable is readwrite, we can change it to readonly
 #Varaibles on shell are local, to use it in script we need to set it as env using export
 
-Training = ${TRAINING}
-echo $Training
+echo Training = ${TRAINING}
