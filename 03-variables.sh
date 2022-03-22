@@ -29,7 +29,7 @@ echo a is $((a*2))
 
 #Variable can store array using () with tab separation and index starts from zero
 #Scalar
-d = 100
+d=100
 echo $d
 #Array
 c=(10 20 "small large")
