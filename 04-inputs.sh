@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#Inputs during execution and before execution
 read -p 'Enter you name: ' name
 echo "You name = $name"
 
