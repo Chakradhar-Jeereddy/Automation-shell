@@ -24,7 +24,7 @@ echo Today data is $DATE
 #var=$((expresssion)), this is arithmetic subst, output goes to variable. example is $((2+3))
 
 Date=$(date +%F)
-echo Todays data is ${Date}
+echo Todays data is $(Date)
 echo a is $((a*2))
 
 #Variable can store array using () with tab separation and index starts from zero
@@ -40,4 +40,4 @@ echo All values of arry   = ${c[*]}
 #By default variable is readwrite, we can change it to readonly
 #to send values for variables in program we use environment variables, to be accessible from scripts
 
-echo Training = ${TRAINING}
+echo Training = $TRAINING
