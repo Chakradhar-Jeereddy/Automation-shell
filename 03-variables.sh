@@ -41,4 +41,4 @@ echo All values of arry   = ${c[*]}
 #to send values for variables in program we use environment variables, to be accessible from scripts
 
 echo Training = $TRAINING
-echo Training = $1
+
