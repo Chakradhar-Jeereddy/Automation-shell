@@ -12,3 +12,6 @@ b=devops
 #{} are needed if variable is combined with other words without spaces
 echo ${a}times
 echo $b Training
+
+DATE=2022-03-22
+echo Today data is $DATE
