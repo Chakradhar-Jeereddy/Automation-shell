@@ -24,4 +24,4 @@ echo Today data is $DATE
 
 Date=date
 echo Todays data is $(Date)
-echo a is $(a*2)
+echo a is $((a*2))
