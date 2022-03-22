@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Variable
-
+#{},(command),((expression)) understand the usage
 #Assigning a name to set of data that is called variable
 #In bash shell we declare variable as VAR=DATA
 #In bash shell we access the variables as $VAR or ${var}
