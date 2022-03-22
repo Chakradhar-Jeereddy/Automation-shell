@@ -7,6 +7,6 @@
 a=100
 b=devops
 
-#TO consider "a" as variable use {}
+#{} are needed if variable is combined with other words without spaces
 echo ${a}times
-echo $b
+echo $b Training
