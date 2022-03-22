@@ -7,5 +7,6 @@
 a=100
 b=devops
 
-echo $atimes
+#TO consider "a" as variable use {}
+echo ${a}atimes
 echo $b
