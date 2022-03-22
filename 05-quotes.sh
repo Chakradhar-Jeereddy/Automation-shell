@@ -8,6 +8,6 @@ echo 'Apple cost is $100'
 echo "Apple cost is $100"
 #Uase back word slash \ to disable special character inside double quotes
 echo "Apple cost is \$100"
-Training = Devops
+Training=Devops
 echo 'Im in ${Training} training'
 echo "Im in ${Training} training"
