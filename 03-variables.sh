@@ -5,6 +5,7 @@
 #Assigning a name to set of data that is called variable
 #In bash shell we declare variable as VAR=DATA
 #In bash shell we access the variables as $VAR or ${var}
+#Special characters not allowed and also name can not start with number
 
 a=100
 b=devops
@@ -25,3 +26,9 @@ echo Today data is $DATE
 Date=$(date +%F)
 echo Todays data is $(Date)
 echo a is $((a*2))
+
+#Variable can store array using () with tab separation and index starts from zero
+c=(10 20 small large)
+echo First value of array = ${c[0]}
+echo Thrid value of array = ${c[2]}
+echo All values of arry   = ${c[*]}
