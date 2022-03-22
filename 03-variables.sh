@@ -23,5 +23,5 @@ echo Today data is $DATE
 #var=$((expresssion)), this is arithmetic subst, output goes to variable. example is $((2+3))
 
 Date=date
-echo Todays data is $($Date)
+echo Todays data is $Date
 echo a is $((a*2))
