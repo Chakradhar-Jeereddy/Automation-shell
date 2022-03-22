@@ -19,4 +19,4 @@ echo -e "\e[31mText\e[0m in Red Color"
 echo "one more line"
 
 echo -e "Line1\n\nLine2"
-echo -r "Word1\t\tWord2"
+echo -e "Word1\t\tWord2"
