@@ -32,12 +32,12 @@ echo a is $((a*2))
 d = 100
 echo $d
 #Array
-c=(10 20 small large)
+c=(10 20 "small large")
 echo First value of array = ${c[0]}
 echo Thrid value of array = ${c[2]}
 echo All values of arry   = ${c[*]}
 
 #By default variable is readwrite, we can change it to readonly
-#Varaibles on shell are local, to use it in script we need to set it as env using export
+#to send values for variables in program we use environment variables, to be accessible from scripts
 
 echo Training = ${TRAINING}
