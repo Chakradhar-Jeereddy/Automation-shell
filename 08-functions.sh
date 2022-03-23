@@ -39,6 +39,7 @@ echo "Exit status of function STAT = $?"
 
 
 
+
 #Note, Function should always be declared first and than you can call the function later in the code.
 # Functions will have it own set of variables like return
 # Variables declared in main program can be overwritten on function and vise versa.
