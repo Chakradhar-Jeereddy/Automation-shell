@@ -42,6 +42,11 @@ fi
 # Expressions are important
 #1 String test
 # Operations : == , != , -z (variable has data or not)
+#2 Number tests
+#operators -ge,-gt,lt,le,ne
+#File test operators
+# -e to check if file exists or not
+#https://tldp.org/LDP/abs/html/fto.html
 
 
 a='abcd'
