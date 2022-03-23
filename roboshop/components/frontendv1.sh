@@ -54,7 +54,8 @@ cd /usr/share/nginx/html/
 Print "Extracting Archive"
 #Test && => echo 1 && echo 2 (if first command is ok, it goes to next command)
 #Test || =< echo 1 || echo 2 (if first command is ok, the second will not get executed)
-unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .  >> $LOG_FILE
+unzip /tmp/frontend.zip >> $LOG_FILE
+mv frontend-main/* . && mv static/* .  >> $LOG_FILE
 StatCheck $?
 
 Print "Update roboshop configuration"
