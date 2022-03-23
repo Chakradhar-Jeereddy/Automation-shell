@@ -6,9 +6,10 @@ yum install nginx -y
 
 
 echo -e "\e[33mDownload frontend files\e[0m"
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zp"
-if [$? -ne 0]; then
-  echo download failed
+curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+echo $?
+if [$? -ge 0]; then
+  echo "download failed"
   exit
 fi
 echo -e "\e[33mCleanup files\e[0m"
