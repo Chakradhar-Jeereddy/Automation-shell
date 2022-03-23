@@ -17,9 +17,29 @@
 Print_message() {
   echo Hello
   echo Good morning
-  echo Welcome to DevOps Training
+  echo Welcome to ${1} Training
+  echo "First argument in function = $1"
+  a=20
+  echo "Value of a = $a"
+  b=20
+}
+STAT() {
+  echo hello
+  return 1
+  echo bye
 }
 
-Print_message
+#Main program
+a=10
+Print_message devops
+echo "First argument in main scrip = $1"
+echo "Value of b = $b"
+STAT
+echo "Exit status of funtion STAT = $?
 
-#Note, Function should always be declared first and than you can call the function later in the code
+
+
+#Note, Function should always be declared first and than you can call the function later in the code.
+# Functions will have it own set of variables like return
+# Variables declared in main program can be overwritten on function and vise versa.
+# Functions is a command, it will have exit status as well.
