@@ -23,10 +23,19 @@ Print_message() {
   echo "Value of a = $a"
   b=20
 }
+STAT1() {
+   echo hello
+   return 1
+   echo bye
+}
+
 STAT() {
-  echo hello
-  return 1
-  echo bye
+  if [ ${1} -eq 0 ]; then
+    echo -e "\e[32mSUCCESS\e[0m"
+  else
+    echo -e "\e[31mFAILURE\e[0m"
+    return 1
+  fi
 }
 
 #Main program
@@ -35,7 +44,7 @@ echo $a
 Print_message devops
 echo "First argument in main script = $1"
 echo "Value of b = $b"
-STAT
+STAT1
 echo "Exit status of function STAT = $?"
 
 
