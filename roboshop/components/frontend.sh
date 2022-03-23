@@ -4,7 +4,7 @@ echo -e "\e[36m Installing nginx \e[0m"
 yum install nginx -y
 
 echo -e "\e[36m Downloading nginx content \e[0m"
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zp"
 
 echo -e "\e[36m Cleanup old nginx content and unarchive new content \e[0m"
 rm -rf /usr/share/nginx/html/*
@@ -23,6 +23,8 @@ systemctl enable nginx
 #issues
 #1. Installation failed, but my script still continued
 #2. Installation failed, because I am not a root user
-#3. Installation failed, because I have not validated that I have root previleges
+#3. Installation failed, because I have not validated that I have root privileges
+#4. The information I would like to provide if success or failure
+#example change the zip to zp in curl command and run the script.
 
 
