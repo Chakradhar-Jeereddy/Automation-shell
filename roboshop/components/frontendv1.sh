@@ -33,15 +33,18 @@ StatCheck() {
   fi
 }
 
-echo -e "\e[36m Installing nginx \e[0m"
+Print() {
+  echo -e "\e[36m $1 \e[0m"
+}
+Print "Installing nginx"
 yum install nginx -y
 StatCheck $?
 
-echo -e "\e[36m Downloading nginx content \e[0m"
+Print "Downloading nginx content"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 StatCheck $?
 
-echo -e "\e[36m Cleanup old nginx content and unarchive new content \e[0m"
+Print "Cleanup old nginx content and unarchive new content"
 rm -rf /usr/share/nginx/html/*
 cd /usr/share/nginx/html/
 unzip /tmp/frontend.zip
@@ -52,7 +55,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 StatCheck $?
 
 
-echo -e "\e[36m starting nginx \e[0m"
+Print "starting nginx"
 systemctl restart nginx
 systemctl enable nginx
 StatCheck $?
