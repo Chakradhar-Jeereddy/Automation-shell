@@ -20,6 +20,16 @@
 #commands
 #fi
 
+#else if to check multiple expressions but limitation is if expression 1 is true
+#the command will exit, it will not check the next expression
+
+#if [ expression1 ]; then
+#command
+#elif [ expression2 ]; then
+#command
+#else
+#command
+
 if [ 1 -eq 1 ]; then
   echo -e "\e[36m hello \e[0m"
 fi
@@ -59,3 +69,12 @@ else
   echo -e "\e[31m Both are not equal. \e[0m"
 fi
 
+#Example of elif
+
+if [ "$a" == "abc" ]; then
+  echo -e "\e[36m equal. \e[0m"
+elif [ "$a" != "abc" ]; then
+  echo -e "\e[31m not equal. \e[0m"
+else
+  echo hello
+fi
