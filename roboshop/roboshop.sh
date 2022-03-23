@@ -2,6 +2,7 @@
 
 if [ ! -e components/$1.sh ]; then
   echo Component does not exists
+  exist
 fi
 bash components/$1.sh
 
