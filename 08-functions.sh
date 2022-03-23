@@ -35,7 +35,7 @@ Print_message devops
 echo "First argument in main scrip = $1"
 echo "Value of b = $b"
 STAT
-echo "Exit status of funtion STAT = $?
+echo "Exit status of function STAT = $?"
 
 
 
