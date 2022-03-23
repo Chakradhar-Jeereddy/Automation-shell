@@ -36,7 +36,7 @@ if [ "$a" != "abc" ]; then
   echo -e "\e[31m Both are not equal. \e[0m"
 fi
 
-if [ -z "$b"]; then
+if [ -z "$b" ]; then
   echo -e "\e[36m Variable b is empty \e[0m"
 fi
 
