@@ -9,12 +9,6 @@
 #5 Any step failed, but my script continued
 #6 Repetitive code is there, in order to deal with this I need to use functions/methods
 
-USER_ID=$(id -u)
-if [ "$USER_ID" -ne 0 ]; then
-  echo -e "\e[36m You should run the script as sudo or root user. \e[0m"
-  exit 1
-fi
-
 STAT() {
   if [ ${1} -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
@@ -36,6 +30,12 @@ StatCheck() {
 Print() {
   echo -e "\e[36m $1 \e[0m"
 }
+
+USER_ID=$(id -u)
+if [ "$USER_ID" -ne 0 ]; then
+  echo -e "\e[36m You should run the script as sudo or root user. \e[0m"
+  exit 1
+fi
 
 Print "Installing nginx"
 yum install nginx -y
