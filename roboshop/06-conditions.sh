@@ -12,7 +12,6 @@
 # commands
 #fi
 
-if [ 1 -eq 1 ]
-then
+if [ 1 -eq 1 ]; then
   echo hello
 fi
