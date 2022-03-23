@@ -7,7 +7,7 @@ yum install nginx -y
 echo -e "\e[33mDownload frontend files\e[0m"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 
-echo -e "\e[33m0Cleanup files\e[0m"
+echo -e "\e[33mCleanup files\e[0m"
 rm -rf /usr/share/nginx/html/
 cd /usr/share/nginx/html
 
