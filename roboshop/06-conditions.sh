@@ -7,11 +7,12 @@
 #IF is found in three forms
 
 #Simple if
-# if [expression]
+# if [ expression ]
 #then
 # commands
 #fi
 
-if [1 -eg 1]
- then echo hello
+if [ 1 -eg 1 ]
+then
+   echo hello
 fi
