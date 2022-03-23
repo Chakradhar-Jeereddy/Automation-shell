@@ -37,6 +37,7 @@ fi
 
 if [ =z "$b"]; then
   echo "\e[36m Variable b is empty \e[0m"
+fi
 
 
 
