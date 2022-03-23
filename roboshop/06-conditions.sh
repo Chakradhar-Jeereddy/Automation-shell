@@ -26,7 +26,7 @@ fi
 # Operations : == , != , -z (variable has data or not)
 
 
-a='abc'
+a='abcd'
 if [ "$a" == "abc" ]; then
   echo -e "\e[36m Both are equal. \e[0m"
 fi
@@ -34,4 +34,9 @@ fi
 if [ "$a" != "abc" ]; then
   echo -e "\e[31m Both are not equal. \e[0m"
 fi
+
+if [ =z "$b"]; then
+  echo "\e[36m Variable b is empty \e[0m"
+
+
 
