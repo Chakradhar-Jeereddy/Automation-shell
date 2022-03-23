@@ -16,10 +16,10 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 systemctl restart nginx
 systemctl enable nginx
 
-...
-issues
-1. Installation failed, but my script still continued
-2. Installation failed, because I am not a root user
-3. Installation failed, becuase I have not validated that I have root previleges
-...
+
+#issues
+#1. Installation failed, but my script still continued
+#2. Installation failed, because I am not a root user
+#3. Installation failed, becuase I have not validated that I have root previleges
+
 
