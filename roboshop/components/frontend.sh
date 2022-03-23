@@ -15,8 +15,7 @@ cd /usr/share/nginx/html
 echo $?
 if [$? -ge 0]; then
   echo "download failed"
-  exit
-fi
+
 
 echo -e "\e[32mUnarchive files\e[0m"
 unzip /tmp/frontend.zip
@@ -28,4 +27,5 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 echo -e "\e[32mStart nginx\e[0m"
 systemctl enable nginx
 systemctl start nginx
-
+  exit
+fi
