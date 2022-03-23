@@ -8,7 +8,7 @@
 #example change the zip to zp in curl command and run the script.
 #5 Any step failed, but my script continued
 #6 Repetitive code is there, in order to deal with this I need to use functions/methods
-
+LOG_FILE=/tmp/installation.log
 STAT() {
   if [ ${1} -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
@@ -38,15 +38,15 @@ if [ "$USER_ID" -ne 0 ]; then
 fi
 
 Print "Installing nginx"
-yum install nginx -y
+yum install nginx -y >> $LOG_FILE
 StatCheck $?
 
 Print "Downloading nginx content"
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"  >> $LOG_FILE
 StatCheck $?
 
 Print "Cleanup old nginx content"
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/*  >> $LOG_FILE
 StatCheck $?
 
 cd /usr/share/nginx/html/
@@ -54,15 +54,15 @@ cd /usr/share/nginx/html/
 Print "Extracting Archive"
 #Test && => echo 1 && echo 2 (if first command is ok, it goes to next command)
 #Test || =< echo 1 || echo 2 (if first command is ok, the second will not get executed)
-unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .
+unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .  >> $LOG_FILE
 StatCheck $?
 
 Print "Update roboshop configuration"
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
+mv localhost.conf /etc/nginx/default.d/roboshop.conf  >> $LOG_FILE
 StatCheck $?
 
 Print "starting nginx"
-systemctl restart nginx && systemctl enable nginx
+systemctl restart nginx && systemctl enable nginx  >> $LOG_FILE
 StatCheck $?
 
 
