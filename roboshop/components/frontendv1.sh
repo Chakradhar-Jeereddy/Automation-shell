@@ -8,7 +8,9 @@
 #example change the zip to zp in curl command and run the script.
 #5 Any step failed, but my script continued
 #6 Repetitive code is there, in order to deal with this I need to use functions/methods
-LOG_FILE=/tmp/installation.log
+LOG_FILE=/tmp/roboshop.log
+rm -rf $LOG_FILE
+
 STAT() {
   if [ ${1} -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
@@ -54,8 +56,7 @@ cd /usr/share/nginx/html/
 Print "Extracting Archive"
 #Test && => echo 1 && echo 2 (if first command is ok, it goes to next command)
 #Test || =< echo 1 || echo 2 (if first command is ok, the second will not get executed)
-unzip /tmp/frontend.zip >> $LOG_FILE
-mv frontend-main/* . && mv static/* .  >> $LOG_FILE
+unzip /tmp/frontend.zip >> $LOG_FILE && mv frontend-main/* .   >> $LOG_FILE && mv static/* .  >> $LOG_FILE
 StatCheck $?
 
 Print "Update roboshop configuration"
