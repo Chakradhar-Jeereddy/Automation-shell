@@ -42,7 +42,7 @@ fi
 
 echo -e "\e[36m starting nginx \e[0m"
 systemctl restart nginx
-systemctl enabl nginx
+systemctl enable nginx
 if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
