@@ -13,10 +13,10 @@
 #fi
 
 if [ 1 -eq 1 ]; then
-  echo hello
+  echo -e "\e[36m hello \e[0m"
 fi
 
 if [ 1 -eq 1 ]
 then
-  echo Another form of if condition
+  echo -e "\e[36m Another form of if condition \e[0m"
 fi
