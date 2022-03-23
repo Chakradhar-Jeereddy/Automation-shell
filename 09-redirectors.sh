@@ -8,4 +8,4 @@
 # >>/dell/null do not want to store output anywhere
 
 #Concept of alias
-#gp alias = 'git pull &>>/dev/null
+#alias gp='git pull &>>/dev/null
