@@ -22,4 +22,4 @@ Print_message() {
 
 Print_message
 
-## Note, Function should always be declared first and than you can call the function later in the code
+#Note, Function should always be declared first and than you can call the function later in the code
