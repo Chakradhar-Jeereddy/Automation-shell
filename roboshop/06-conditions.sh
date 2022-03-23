@@ -52,7 +52,7 @@ fi
 
 
 #Example of IF else
-a=abc1
+a=abc
 if [ "$a" == "abc" ]; then
   echo -e "\e[36m Both are equal. \e[0m"
 else
