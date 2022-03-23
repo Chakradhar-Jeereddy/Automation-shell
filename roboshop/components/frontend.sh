@@ -26,5 +26,6 @@ systemctl enable nginx
 #3. Installation failed, because I have not validated that I have root privileges
 #4. The information I would like to provide if success or failure
 #example change the zip to zp in curl command and run the script.
+#5 Any step failed, but my script continued
 
 
