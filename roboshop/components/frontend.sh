@@ -16,7 +16,7 @@ else
 fi
 
 echo -e "\e[36m Downloading nginx content \e[0m"
-curl -s -L -o /tmp/frontend.zip "https://githu.com/roboshop-devops-project/frontend/archive/main.zip"
+curl -s -L -o /tmp/frontend.zip "https://gith.com/roboshop-devops-project/frontend/archive/main.zip"
 if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
