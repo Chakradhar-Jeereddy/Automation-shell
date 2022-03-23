@@ -34,3 +34,4 @@ fi
 if [ $a != abc ]; then
   echo -e "\e[31m Both are not equal. \e[0m"
 fi
+
