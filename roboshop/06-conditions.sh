@@ -12,6 +12,14 @@
 # commands
 #fi
 
+# if else
+
+#if [ expression ]; then
+#commands
+#else
+#commands
+#fi
+
 if [ 1 -eq 1 ]; then
   echo -e "\e[36m hello \e[0m"
 fi
@@ -43,4 +51,11 @@ fi
 #Double quotes in expression of if condition is mandatory
 
 
+#Example of IF else
+a=abc1
+if [ "$a" == "abc" ]; then
+  echo -e "\e[36m Both are equal. \e[0m"
+else
+  echo -e "\e[31m Both are not equal. \e[0m"
+fi
 
