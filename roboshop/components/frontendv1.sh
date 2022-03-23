@@ -30,7 +30,7 @@ StatCheck() {
 }
 
 Print() {
-  echo -e "\n-----------------------$1---------------------------" >>$LOG_FILE
+  echo -e "\n-----------------------$1---------------------------" &>>$LOG_FILE
   echo -e "\e[36m $1 \e[0m"
 }
 
@@ -41,7 +41,7 @@ if [ "$USER_ID" -ne 0 ]; then
 fi
 
 Print "Installing nginx"
-yum install nginx -y >> $LOG_FILE
+yum install nginx -y &>>$LOG_FILE
 StatCheck $?
 
 Print "Downloading nginx content"
@@ -49,7 +49,7 @@ curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/fron
 StatCheck $?
 
 Print "Cleanup old nginx content"
-rm -rf /usr/share/nginx/html/*  >> $LOG_FILE
+rm -rf /usr/share/nginx/html/*  &>>$LOG_FILE
 StatCheck $?
 
 cd /usr/share/nginx/html/
@@ -57,15 +57,15 @@ cd /usr/share/nginx/html/
 Print "Extracting Archive"
 #Test && => echo 1 && echo 2 (if first command is ok, it goes to next command)
 #Test || =< echo 1 || echo 2 (if first command is ok, the second will not get executed)
-unzip /tmp/frontend.zip >> $LOG_FILE && mv frontend-main/* .   >> $LOG_FILE && mv static/* .  >> $LOG_FILE
+unzip /tmp/frontend.zip &>>$LOG_FILE&& mv frontend-main/* .   &>>$LOG_FILE && mv static/* . &>>$LOG_FILE
 StatCheck $?
 
 Print "Update roboshop configuration"
-mv localhost.conf /etc/nginx/default.d/roboshop.conf  >> $LOG_FILE
+mv localhost.conf /etc/nginx/default.d/roboshop.conf  &>>$LOG_FILE
 StatCheck $?
 
 Print "starting nginx"
-systemctl restart nginx && systemctl enable nginx  >> $LOG_FILE
+systemctl restart nginx && systemctl enable nginx  &>>$LOG_FILE
 StatCheck $?
 
 
