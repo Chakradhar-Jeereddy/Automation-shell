@@ -5,7 +5,8 @@
 #2> is to write errors to file
 #2>> is to append errors to file
 # &> or &>> is to write/append both output and error to file
-# >>/dell/null do not want to store output anywhere
+# >>/dell/null If we do not need any kind of output or error to a file for future reference we try to
+#nullify the output with the help of /dev/null file
 
 #Concept of alias
 #alias gp='git pull &>>/dev/null
