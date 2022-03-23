@@ -20,3 +20,17 @@ if [ 1 -eq 1 ]
 then
   echo -e "\e[36m Another form of if condition \e[0m"
 fi
+
+# Expressions are important
+#1 String test
+# Operations : == , != , -z (variable has data or not)
+
+
+a='abc'
+if [ "$a" == "abc" ]; then
+  echo -e "\e[36m Both are equal. \e[0m"
+fi
+
+if [ $a != abc ]; then
+  echo -e "\e[31m Both are not equal. \e[0m"
+fi
