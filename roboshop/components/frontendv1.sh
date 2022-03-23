@@ -15,6 +15,15 @@ if [ "$USER_ID" -ne 0 ]; then
   exit 1
 fi
 
+STAT() {
+  if [ ${1} -eq 0 ]; then
+    echo -e "\e[32mSUCCESS\e[0m"
+  else
+    echo -e "\e[31mFAILURE\e[0m"
+    return 1
+  fi
+}
+
 echo -e "\e[36m Installing nginx \e[0m"
 yum install nginx -y
 STAT $?
