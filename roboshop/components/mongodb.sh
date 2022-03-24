@@ -1,4 +1,7 @@
 #!/bin/bash
+
+source components/common.sh
+
 LOG_FILE=/tmp/roboshop.log
 rm -rf $LOG_FILE
 
@@ -8,19 +11,7 @@ if [ ${USER_ID} -ne 0 ]; then
   exit 1
 fi
 
-print() {
-  echo -e "\n------------------$1---------------------------" &>>$LOG_FILE
-  echo -e "\e[36m $1 \e[0m"
-}
 
-StatCheck() {
-  if [ 0 -eq $1 ]; then
-    echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e "\e[31mFAILURE\e[0m"
-    exit 2
-  fi
-}
 print "Cleanup existing mongodb content"
 rm -rf /tmp/mongodb*
 StatCheck $?
@@ -33,9 +24,9 @@ print "Installing mongodb"
 yum install -y mongodb-org &>>$LOG_FILE
 StatCheck $?
 
-#1. Update Listen IP address from 127.0.0.1 to 0.0.0.0 in config file
-#
-#Config file: `/etc/mongod.conf`
+Print "ADD IP ADDRESS"
+sed -i 's/127.0.0.1/0.0.0.0' /etc/mongod.conf
+StatCheck $?
 
 print "Starting mongodb"
 systemctl start mongod && systemctl enable mongod
