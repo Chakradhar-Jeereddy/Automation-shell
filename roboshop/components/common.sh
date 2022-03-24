@@ -49,7 +49,7 @@ APP_SETUP(){
   rm -rf /home/roboshop/{COMPONENT} &>>${LOG_FILE}
   StatCheck $?
   Print "Extracting APP Content"
-  cd /home/${APP_USER} &>>${LOG_FILE} && unzip -o /tmp/catalogue.zip &>>$LOG_FILE && mv catalogue-main catalogue &>>$LOG_FILE
+  cd /home/${APP_USER} &>>${LOG_FILE} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG_FILE && mv ${COMPONENT}-main ${COMPONENT} &>>$LOG_FILE
   npm install &>>$LOG_FILE
   StatCheck $?
 }
