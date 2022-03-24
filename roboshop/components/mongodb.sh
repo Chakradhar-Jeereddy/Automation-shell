@@ -7,7 +7,7 @@ rm -rf $LOG_FILE
 
 USER_ID=$(id -u)
 if [ ${USER_ID} -ne 0 ]; then
-  echo -e "\e[36m You need to be a root user to run the script\e[0m."
+  Print "You need to be a root user to run the script."
   exit 1
 fi
 
