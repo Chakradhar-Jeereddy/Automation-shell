@@ -2,6 +2,13 @@
 
 LOG_FILE=/tmp/roboshop.log
 APP_USER=roboshop
+
+USER_ID=$(id -u)
+if [ "$USER_ID" -ne 0 ]; then
+  echo -e "\e[36m You should run the script as sudo or root user. \e[0m"
+  exit 1
+fi
+
 StatCheck() {
   if [ $1 -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
