@@ -1,4 +1,5 @@
 #!/bin/bash
+LOG_FILE=/tmp/roboshop.log
 
 USER_ID=$(id -u)
 if [ ${USER_ID} -ne 0 ]; then
@@ -23,11 +24,11 @@ rm -rf /tmp/mongodb*
 StatCheck $?
 
 print "Downloading mongodb repository"
-curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>$LOG_FILE
 StatCheck $?
 
 print "Installing mongodb"
-yum install -y mongodb-org
+yum install -y mongodb-org &>>$LOG_FILE
 StatCheck $?
 
 #1. Update Listen IP address from 127.0.0.1 to 0.0.0.0 in config file
@@ -35,19 +36,17 @@ StatCheck $?
 #Config file: `/etc/mongod.conf`
 
 print "Starting mongodb"
-systemctl start mongod
-systemctl enable mongod
+systemctl start mongod && systemctl enable mongod
 StatCheck $?
 
 print "Downloading schemas of mongodb"
-curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
 cd /tmp
 
 print "Extracting schema files"
-unzip /tmp/mongodb.zip
+unzip /tmp/mongodb.zip &>>$LOG_FILE
 StatCheck $?
 
 print "Loading schemas into the database"
-mongo < mongodb-main/catalogue.js
-mongo < mongodb-main/users.js
+mongo < mongodb-main/catalogue.js &>>$LOG_FILE && mongo < mongodb-main/users.js &>>$LOG_FILE
 StatCheck $?
