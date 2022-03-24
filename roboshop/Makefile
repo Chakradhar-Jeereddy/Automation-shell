@@ -4,7 +4,11 @@ frontend:
 cart:
 	bash components/cart.sh
 
+mongodb:
+	bash components/mongodb.sh
+
 frontendv1:
 	bash components/frontendv1.sh
+
 
 #Give proper output if argument is wrong, no need to handle the error
