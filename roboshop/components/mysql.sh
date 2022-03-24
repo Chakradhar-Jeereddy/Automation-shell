@@ -1,5 +1,5 @@
 #!/bin/bash
-component/common.sh
+components/common.sh
 
 Print "Setup repos"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>$LOG_FILE
