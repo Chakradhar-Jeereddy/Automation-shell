@@ -38,7 +38,8 @@ StatCheck $?
 Print "Update roboshop configuration"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf  &>>$LOG_FILE
 for component in catalogue user cart shippment payment; do
-  sed -i "/${component}/s/localhost/${component}.roboshop.internal.com" /etc/nginz/defaults.d/roboshop.conf
+  echo "Updating ${component} in configuration"
+  sed -i -e "/${component}/s/localhost/${component}.roboshop.internal/"  /etc/nginx/default.d/roboshop.conf
   StatCheck $?
 done
 
