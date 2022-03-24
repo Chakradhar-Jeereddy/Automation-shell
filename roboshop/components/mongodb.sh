@@ -36,7 +36,7 @@ StatCheck $?
 #Config file: `/etc/mongod.conf`
 
 print "Starting mongodb"
-systemctl start mongod && systemctl enable mongod
+systemctl start mongodb && systemctl enable mongod
 StatCheck $?
 
 print "Downloading schemas of mongodb"
