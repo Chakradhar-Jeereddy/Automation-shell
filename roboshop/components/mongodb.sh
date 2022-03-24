@@ -34,8 +34,6 @@ Print "Downloading schemas of mongodb"
 curl -f -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
 StatCheck $?
 
-
-
 Print "Extracting schema"
 cd /tmp && unzip /tmp/mongodb.zip &>>$LOG_FILE
 StatCheck $?
