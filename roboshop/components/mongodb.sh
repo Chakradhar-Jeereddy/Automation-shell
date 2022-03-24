@@ -45,3 +45,4 @@ for component in catalogue users; do
   mongo < mongodb-main/$component.js &>>$LOG_FILE
 StatCheck $?
 done
+
