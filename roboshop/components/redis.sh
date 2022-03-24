@@ -11,8 +11,8 @@ yum install redis -y &>>$LOG_FILE
 StatCheck $?
 
 Print "Service setup"
-sed -i -e '/127.0.0.1/0.0.0.0/' /etc/redis.conf \
-       -e '/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
+sed -i -e '/s/127.0.0.1/0.0.0.0/' /etc/redis.conf \
+       -e '/s/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 StatCheck $?
 
 Print "Starting Redis Database"
