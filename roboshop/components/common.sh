@@ -43,7 +43,7 @@ APP_SETUP(){
   StatCheck $?
   fi
   Print "Downloading App Component"
-  curl -f -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/{COMPONENT}/archive/main.zip" &>>${LOG_FILE}
+  curl -f -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
   StatCheck $?
   Print "Cleanup files"
   rm -rf /home/roboshop/{COMPONENT} &>>${LOG_FILE}
