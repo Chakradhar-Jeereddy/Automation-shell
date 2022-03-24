@@ -58,7 +58,7 @@ SERVICE_SETUP() {
   chown -R ${APP_USER}:${APP_UER} /home/${APP_USER}
   StatCheck $?
   Print "Setup systemD file"
-  sed -i  -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' \
+  sed -i  -e 's/MONGO_DNSNAME/172.31.86.185/' \
           -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' \
           -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' \
           -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' \
