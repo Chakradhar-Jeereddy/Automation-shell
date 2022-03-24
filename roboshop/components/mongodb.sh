@@ -18,7 +18,7 @@ systemctl enable mongod
 rm -rf /tmp/mongodb*
 
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
-
+cd /tmp
 unzip /tmp/mongodb.zip
 cd mongodb-main
 mongo < catalogue.js
