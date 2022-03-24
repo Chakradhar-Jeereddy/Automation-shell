@@ -31,7 +31,7 @@ npm install &>>$LOG_FILE
 StatCheck $?
 
 Print "Updating DNS name in catalogue service file"
-sed -e -i 's/MONGO_DNSNAME/172.31.86.185/' /home/$APP_USER/catalogue/systemd.service &>>$LOG_FILE
+sed -i 's/MONGO_DNSNAME/172.31.86.185/' /home/$APP_USER/catalogue/systemd.service &>>$LOG_FILE
 mv /home/$APP_USER/catalogue/systemd.service /etc/systemd/system/catalogue.service &>>$LOG_FILE
 StatCheck $?
 
