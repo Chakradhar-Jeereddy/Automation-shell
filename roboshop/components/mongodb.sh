@@ -1,5 +1,6 @@
 #!/bin/bash
 LOG_FILE=/tmp/roboshop.log
+rm -rf $LOG_FILE
 
 USER_ID=$(id -u)
 if [ ${USER_ID} -ne 0 ]; then
@@ -8,6 +9,7 @@ if [ ${USER_ID} -ne 0 ]; then
 fi
 
 print() {
+  echo -e "\n------------------$1---------------------------"
   echo -e "\e[36m $1 \e[0m"
 }
 
