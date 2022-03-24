@@ -69,7 +69,7 @@ SERVICE_SETUP() {
           -e 's/AMQPHOST/rabbitmq.roboshop.internal/' \
           /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE} && mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service  &>>${LOG_FILE}
   StatCheck $?
-  Print "Restart $(COMPONENT) SERVICE"
+  Print "Restart ${COMPONENT} SERVICE"
   systemctl daemon-reload  &>>$LOG_FILE && systemctl restart ${COMPONENT} &>>$LOG_FILE && systemctl enable ${COMPONENT} &>>$LOG_FILE
   StatCheck $?
 }
