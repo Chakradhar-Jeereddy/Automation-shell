@@ -4,11 +4,11 @@
 #Loop based done inputs, for loop command
 
 i=10
-while [ $i -gt 0 ]; do
-  echo Iteration is $i
-  i=$(($i-1))
+while [ $i -lt 20 ]; do
+  Iteration is $i
+  i=$(($i+1))
 done
 
-for name in chakra ravi rama; do
-  echo My name is $name
+for firm in SG TCS WIPRO; do
+  echo I joined in $firm
 done
