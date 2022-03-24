@@ -16,6 +16,7 @@ if [ -f etc/redis.conf && -f /etc/redis/redis.conf ]; then
        -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 else
   Print "File does not exists"
+  exit 2
 fi
 StatCheck $?
 
