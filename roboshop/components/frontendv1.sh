@@ -10,7 +10,6 @@
 #6 Repetitive code is there, in order to deal with this I need to use functions/methods
 source components/common.sh
 
-LOG_FILE=/tmp/roboshop.log
 rm -rf $LOG_FILE
 
 STAT() {

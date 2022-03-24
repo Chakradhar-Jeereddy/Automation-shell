@@ -2,7 +2,6 @@
 
 source components/common.sh
 
-LOG_FILE=/tmp/roboshop.log
 rm -rf $LOG_FILE
 
 USER_ID=$(id -u)

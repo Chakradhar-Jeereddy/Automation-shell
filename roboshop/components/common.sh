@@ -1,5 +1,7 @@
 #!/bin/bash
 
+LOG_FILE=/tmp/roboshop.log
+APP_USER=roboshop
 StatCheck() {
   if [ $1 -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
