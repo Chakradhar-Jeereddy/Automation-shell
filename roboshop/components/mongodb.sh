@@ -1,5 +1,9 @@
 #!/bin/bash
-
+USER_ID=$(id -u)
+if [ ${USER_ID} -ne 0 ]; then
+  echo -e "\e[36m You need to be a root user to run the script."
+  exit 1
+fi
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
 
 yum install -y mongodb-org
