@@ -25,7 +25,7 @@ yum install -y mongodb-org &>>$LOG_FILE
 StatCheck $?
 
 Print "ADD IP ADDRESS"
-sed -i 's/127.0.0.1/0.0.0.0' /etc/mongod.conf
+sed -e -i 's/127.0.0.1/0.0.0.0' /etc/mongod.conf
 StatCheck $?
 
 print "Starting mongodb"
