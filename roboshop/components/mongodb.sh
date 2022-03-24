@@ -11,7 +11,6 @@ if [ ${USER_ID} -ne 0 ]; then
   exit 1
 fi
 
-
 print "Cleanup existing mongodb content"
 rm -rf /tmp/mongodb*
 StatCheck $?
