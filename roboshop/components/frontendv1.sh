@@ -32,7 +32,7 @@ cd /usr/share/nginx/html/
 #Test || =< echo 1 || echo 2 (if first command is ok, the second will not get executed)
 
 Print "Extracting Archive"
-unzip -o /tmp/frontend.zip &>>$LOG_FILE&& mv frontend-main/* . &>>$LOG_FILE && mv static/* . &>>$LOG_FILE
+unzip -o /tmp/frontend.zip &>>$LOG_FILE && mv frontend-main/* . &>>$LOG_FILE && mv static/* . &>>$LOG_FILE
 StatCheck $?
 
 Print "Update roboshop configuration"
