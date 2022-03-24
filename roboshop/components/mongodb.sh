@@ -39,6 +39,8 @@ Print "Extracting schema"
 cd /tmp && unzip -o /tmp/mongodb.zip &>>$LOG_FILE
 StatCheck $?
 
-Print "Loading schemas e"
-mongo < mongodb-main/catalogue.js &>>$LOG_FILE && mongo < mongodb-main/users.js &>>$LOG_FILE
+Print "Loading schemas"
+for component in catalogue users; do
+  mongo < mongodb-main/$component.js &>>$LOG_FILE
 StatCheck $?
+done
