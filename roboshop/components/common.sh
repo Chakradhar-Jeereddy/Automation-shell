@@ -61,7 +61,7 @@ SERVICE_SETUP() {
   sed -i  -e 's/MONGO_DNSNAME/172.31.86.185/' \
           -e 's/REDIS_ENDPOINT/172.31.82.138/' \
           -e 's/MONGO_ENDPOINT/172.31.86.185/' \
-          -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' \
+          -e 's/CATALOGUE_ENDPOINT/172.31.89.102/' \
           -e 's/CARTENDPOINT/cart.roboshop.internal/' \
           -e 's/DBHOST/mysql.roboshop.internal/' \
           -e 's/CARTHOST/cart.roboshop.internal/' \
