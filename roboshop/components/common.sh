@@ -35,7 +35,7 @@ STAT() {
   fi
 }
 
-APP_USER(){
+APP_SETUP(){
   id ${APP_USER} &>>${LOG_FILE}
   if [ $? -ne 0 ]; then
   Print "Adding application user"
