@@ -26,8 +26,8 @@ StatCheck $?
 cd /home/roboshop
 
 Print "Extracting files"
-unzip /tmp/catalogue.zip &>>$LOG_FILE && mv catalogue-main catalogue &>>$LOG_FILE && cd /home/roboshop/catalogue &>>$LOG_FILE
-npm install
+unzip -o /tmp/catalogue.zip &>>$LOG_FILE && mv catalogue-main catalogue &>>$LOG_FILE && cd /home/roboshop/catalogue &>>$LOG_FILE
+npm install &>>$LOG_FILE
 StatCheck $?
 
 Print "Updating DNS name in catalogue service file"
@@ -37,8 +37,13 @@ StatCheck $?
 
 Print "change permissions"
 chown ${APP_USER}:$APP_USER -R /home/roboshop/ &>>$LOG_FILE
+chmod -R 777 /home/roboshop/ &>>$LOG_FILE
 StatCheck $?
 
 Print "Start catalogue service"
 systemctl daemon-reload &>>$LOG_FILE && systemctl start catalogue &>>$LOG_FILE && systemctl enable catalogue &>>$LOG_FILE
+StatCheck $?
+
+Print "Cleanup files"
+rm -rf /home/roboshop/*
 StatCheck $?
