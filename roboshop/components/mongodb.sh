@@ -36,8 +36,7 @@ StatCheck $?
 #Config file: `/etc/mongod.conf`
 
 print "Starting mongodb"
-systemctl start mongodb && systemctl enable mongod
-StatCheck $?
+systemctl start mongod
 
 print "Downloading schemas of mongodb"
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
