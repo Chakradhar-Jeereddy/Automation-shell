@@ -19,7 +19,7 @@ StatCheck() {
     exit 2
   fi
 }
-print "Cleanup existing  mongodb content"
+print "Cleanup existing mongodb content"
 rm -rf /tmp/mongodb*
 StatCheck $?
 
