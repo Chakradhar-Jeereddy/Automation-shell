@@ -29,7 +29,7 @@ sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 StatCheck $?
 
 print "Starting mongodb"
-systemctl start mongod && systemctl enable mongod
+systemctl restart mongod && systemctl enable mongod
 StatCheck $?
 
 print "Downloading schemas of mongodb"
