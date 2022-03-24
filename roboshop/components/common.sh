@@ -90,5 +90,4 @@ NODEJS() {
   StatCheck $?
 
   SERVICE_SETUP
-
 }
