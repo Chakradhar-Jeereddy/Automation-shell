@@ -41,6 +41,7 @@ StatCheck $?
 
 Print "Loading schemas"
 for component in catalogue users; do
+  echo -e "Loading $compnent schema" &>>$LOG_FILE
   mongo < mongodb-main/$component.js &>>$LOG_FILE
 StatCheck $?
 done
