@@ -29,7 +29,6 @@ cd /tmp
 echo -e "\e[36m Extracting schema files \e[0m"
 unzip /tmp/mongodb.zip
 
-
 echo -e "\e[36m Loading schemas into database \e[0m"
 mongo < mongodb-main/catalogue.js
 mongo < mongodb-main/users.js
