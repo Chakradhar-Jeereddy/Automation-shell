@@ -12,7 +12,6 @@ if [ ${USER_ID} -ne 0 ]; then
 fi
 
 Print "Cleanup existing mongodb content"
-rm -rf /tmp/mongodb*
 StatCheck $?
 
 Print "Downloading mongodb repository"
