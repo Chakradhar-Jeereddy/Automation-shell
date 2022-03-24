@@ -19,4 +19,7 @@ redis:
 user:
 	bash components/users.sh
 
+mysql:
+	bash components/mysql.sh
+
 #Give proper output if argument is wrong, no need to handle the error
