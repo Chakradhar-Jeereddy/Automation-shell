@@ -12,7 +12,7 @@ StatCheck $?
 
 Print "Service setup"
 if [ -f etc/redis.conf && -f /etc/redis/redis.conf ]; then
-  sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf \
+  sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.con \
        -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 else
   Print "File does not exists"
