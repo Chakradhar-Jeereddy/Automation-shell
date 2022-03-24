@@ -11,15 +11,15 @@ if [ ${USER_ID} -ne 0 ]; then
   exit 1
 fi
 
-print "Cleanup existing mongodb content"
+Print "Cleanup existing mongodb content"
 rm -rf /tmp/mongodb*
 StatCheck $?
 
-print "Downloading mongodb repository"
+Print "Downloading mongodb repository"
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>$LOG_FILE
 StatCheck $?
 
-print "Installing mongodb"
+Print "Installing mongodb"
 yum install -y mongodb-org &>>$LOG_FILE
 StatCheck $?
 
@@ -27,18 +27,18 @@ Print "ADD IP ADDRESS"
 sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 StatCheck $?
 
-print "Starting mongodb"
+Print "Starting mongodb"
 systemctl restart mongod && systemctl enable mongod
 StatCheck $?
 
-print "Downloading schemas of mongodb"
+Print "Downloading schemas of mongodb"
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
 cd /tmp
 
-print "Extracting schema files"
+Print "Extracting schema files"
 unzip /tmp/mongodb.zip &>>$LOG_FILE
 StatCheck $?
 
-print "Loading schemas into the database"
+Print "Loading schemas into the database"
 mongo < mongodb-main/catalogue.js &>>$LOG_FILE && mongo < mongodb-main/users.js &>>$LOG_FILE
 StatCheck $?
