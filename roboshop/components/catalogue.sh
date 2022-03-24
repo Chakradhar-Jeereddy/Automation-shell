@@ -3,6 +3,10 @@
 source components/common.sh
 rm -rf $LOG_FILE
 
+Print "Cleanup files"
+rm -rf /home/roboshop/*
+StatCheck $?
+
 Print "Downloading setup files for catalogue"
 curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash - &>>$LOG_FILE
 StatCheck $?
@@ -44,6 +48,3 @@ Print "Start catalogue service"
 systemctl daemon-reload &>>$LOG_FILE && systemctl start catalogue &>>$LOG_FILE && systemctl enable catalogue &>>$LOG_FILE
 StatCheck $?
 
-Print "Cleanup files"
-rm -rf /home/roboshop/*
-StatCheck $?
