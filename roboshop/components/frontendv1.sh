@@ -10,25 +10,6 @@
 #6 Repetitive code is there, in order to deal with this I need to use functions/methods
 source components/common.sh
 
-rm -rf $LOG_FILE
-
-STAT() {
-  if [ ${1} -eq 0 ]; then
-    echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e "\e[31mFAILURE\e[0m"
-    return 1
-  fi
-}
-
-
-
-USER_ID=$(id -u)
-if [ "$USER_ID" -ne 0 ]; then
-  echo -e "\e[36m You should run the script as sudo or root user. \e[0m"
-  exit 1
-fi
-
 Print "Installing nginx"
 yum install nginx -y &>>$LOG_FILE
 StatCheck $?
@@ -41,17 +22,25 @@ Print "Cleanup old nginx content"
 rm -rf /usr/share/nginx/html/*  &>>$LOG_FILE
 StatCheck $?
 
+Print "Cleanup old Nginx content"
+rm -rf /usr/share/nginx/html/* &>>$LOG_FILE
+StatCheck $?
+
 cd /usr/share/nginx/html/
 
-Print "Extracting Archive"
 #Test && => echo 1 && echo 2 (if first command is ok, it goes to next command)
 #Test || =< echo 1 || echo 2 (if first command is ok, the second will not get executed)
-unzip /tmp/frontend.zip &>>$LOG_FILE&& mv frontend-main/* .   &>>$LOG_FILE && mv static/* . &>>$LOG_FILE
+
+Print "Extracting Archive"
+unzip -o /tmp/frontend.zip &>>$LOG_FILE&& mv frontend-main/* . &>>$LOG_FILE && mv static/* . &>>$LOG_FILE
 StatCheck $?
 
 Print "Update roboshop configuration"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf  &>>$LOG_FILE
-StatCheck $?
+for component in catalogue user cart shippment payment; do
+  sed -i -e "/${component}/s/localhost/${component}.chakra.internal.com" /etc/nginz/defaults.d/roboshop.conf
+  StatCheck $?
+done
 
 Print "starting nginx"
 systemctl restart nginx && systemctl enable nginx  &>>$LOG_FILE
