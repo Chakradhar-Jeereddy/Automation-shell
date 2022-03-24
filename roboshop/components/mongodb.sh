@@ -32,13 +32,15 @@ systemctl restart mongod && systemctl enable mongod
 StatCheck $?
 
 Print "Downloading schemas of mongodb"
-curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
-cd /tmp
-
-Print "Extracting schema files"
-unzip /tmp/mongodb.zip &>>$LOG_FILE
+curl -f -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>$LOG_FILE
 StatCheck $?
 
-Print "Loading schemas into the database"
+
+
+Print "Extracting schema"
+cd /tmp && unzip /tmp/mongodb.zip &>>$LOG_FILE
+StatCheck $?
+
+Print "Loading schemas e"
 mongo < mongodb-main/catalogue.js &>>$LOG_FILE && mongo < mongodb-main/users.js &>>$LOG_FILE
 StatCheck $?
