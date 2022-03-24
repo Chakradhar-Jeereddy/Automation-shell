@@ -5,7 +5,7 @@
 
 i=10
 while [ $i -lt 20 ]; do
-  Iteration is $i
+  echo Iteration is $i
   i=$(($i+1))
 done
 
