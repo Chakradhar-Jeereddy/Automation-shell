@@ -1,12 +1,12 @@
 #!/bin/bash
 source components/common.sh
 
-Print "Installing Erlang"
-yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>${LOG_FILE}
-StatCheck $?
-
 Print "Configuring repos"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>${LOG_FILE}
+StatCheck $?
+
+Print "Installing Erlang"
+yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y &>>${LOG_FILE}
 StatCheck $?
 
 Print "Installing RabbitMQ"
