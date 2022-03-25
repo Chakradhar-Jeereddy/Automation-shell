@@ -14,7 +14,7 @@ Print "Starting Mysql"
 systemctl enable mysqld  &>>$LOG_FILE && systemctl start mysqld  &>>$LOG_FILE
 StatCheck $?
 
-echo 'show databases' | mysql -uroot -pRoboShop@1 &>>${LOG_FILE}
+echo 'show databases;' | mysql -uroot -pRoboShop@1 &>>${LOG_FILE}
 if [ $? -ne 0 ]; then
   Print "Change Default root password"
   echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('RoboShop@1');" &>>/tmp/rootpass.sql
@@ -35,7 +35,7 @@ Print "Downloading schema"
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>${LOG_FILE}
 StatCheck $?
 
-Print "Extract Schema"
+Print "Extracting Schema"
 cd /tmp && unzip -o  mysql.zip &>>${LOG_FILE}
 StatCheck $?
 
