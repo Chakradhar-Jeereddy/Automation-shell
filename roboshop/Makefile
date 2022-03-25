@@ -28,4 +28,5 @@ ship:
 rabbit:
 	bash components/rabbitmq.sh
 
+
 #Give proper output if argument is wrong, no need to handle the error
