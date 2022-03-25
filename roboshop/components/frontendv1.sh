@@ -41,6 +41,7 @@ sed -i -e '/catalogue/s/localhost/172.31.89.102/' /etc/nginx/default.d/roboshop.
 sed -i -e '/user/s/localhost/172.31.80.113/' /etc/nginx/default.d/roboshop.conf
 sed -i -e '/cart/s/localhost/172.31.91.125/' /etc/nginx/default.d/roboshop.conf
 sed -i -e '/shipping/s/localhost/172.31.88.233/' /etc/nginx/default.d/roboshop.conf
+sed -i -e '/payment/s/localhost/172.31.16.42/' /etc/nginx/default.d/roboshop.conf
 #for component in catalogue user cart shipment payment; do
 #  echo "Updating ${component} in configuration"
 #  sed -i -e "/catalogue/s/localhost/catalogue.roboshop.internal/"  /etc/nginx/default.d/roboshop.conf
