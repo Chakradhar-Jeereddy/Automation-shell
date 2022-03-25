@@ -22,4 +22,7 @@ user:
 mysql:
 	bash components/mysql.sh
 
+ship:
+	bash components/shipping.sh
+
 #Give proper output if argument is wrong, no need to handle the error

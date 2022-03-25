@@ -62,8 +62,8 @@ SERVICE_SETUP() {
           -e 's/REDIS_ENDPOINT/172.31.82.138/' \
           -e 's/MONGO_ENDPOINT/172.31.86.185/' \
           -e 's/CATALOGUE_ENDPOINT/172.31.89.102/' \
-          -e 's/CARTENDPOINT/cart.roboshop.internal/' \
-          -e 's/DBHOST/mysql.roboshop.internal/' \
+          -e 's/CARTENDPOINT/172.31.91.125/' \
+          -e 's/DBHOST/172.31.94.187/' \
           -e 's/CARTHOST/cart.roboshop.internal/' \
           -e 's/USERHOST/user.roboshop.internal/' \
           -e 's/AMQPHOST/rabbitmq.roboshop.internal/' \
