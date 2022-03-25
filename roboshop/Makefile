@@ -31,5 +31,8 @@ rabbit:
 payment:
 	bash components/payment.sh
 
+dispatch:
+	bash components/dispatch.sh
+
 
 #Give proper output if argument is wrong, no need to handle the error
