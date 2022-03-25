@@ -64,9 +64,9 @@ SERVICE_SETUP() {
           -e 's/CATALOGUE_ENDPOINT/172.31.89.102/' \
           -e 's/CARTENDPOINT/172.31.91.125/' \
           -e 's/DBHOST/172.31.94.187/' \
-          -e 's/CARTHOST/cart.roboshop.internal/' \
-          -e 's/USERHOST/user.roboshop.internal/' \
-          -e 's/AMQPHOST/rabbitmq.roboshop.internal/' \
+          -e 's/CARTHOST/172.31.91.125/' \
+          -e 's/USERHOST/172.31.80.113/' \
+          -e 's/AMQPHOST/172.31.28.96/' \
           /home/roboshop/${COMPONENT}/systemd.service &>>${LOG_FILE} && mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service  &>>${LOG_FILE}
   StatCheck $?
   Print "Restart ${COMPONENT} SERVICE"

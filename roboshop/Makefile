@@ -28,5 +28,8 @@ ship:
 rabbit:
 	bash components/rabbitmq.sh
 
+payment:
+	bash components/payment.sh
+
 
 #Give proper output if argument is wrong, no need to handle the error
