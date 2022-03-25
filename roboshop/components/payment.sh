@@ -10,6 +10,6 @@ StatCheck $?
 APP_SETUP
 
 Print "Install dependencies"
-cd /home/roboshop/payment && pip3 install -r requirements.txt
+cd /home/roboshop/payment $>>${LOG_FILE} && pip3 install -r requirements.txt  $>>${LOG_FILE}
 
 SERVICE_SETUP
