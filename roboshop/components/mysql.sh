@@ -10,7 +10,7 @@ Print "Installing mysql"
 yum install mysql-community-server -y  &>>$LOG_FILE
 StatCheck $?
 
-print "Starting Mysql"
+Print "Starting Mysql"
 systemctl enable mysqld  &>>$LOG_FILE && systemctl start mysqld  &>>$LOG_FILE
 StatCheck $?
 
