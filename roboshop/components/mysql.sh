@@ -14,6 +14,7 @@ Print "Starting Mysql"
 systemctl enable mysqld  &>>$LOG_FILE && systemctl start mysqld  &>>$LOG_FILE
 StatCheck $?
 
+#NF is end field
 echo 'show databases;' | mysql -uroot -pRoboShop@1 &>>${LOG_FILE}
 if [ $? -ne 0 ]; then
   Print "Change Default root password"
