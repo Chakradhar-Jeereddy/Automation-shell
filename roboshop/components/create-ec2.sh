@@ -21,7 +21,7 @@ StatCheck $?
 
 create_ec2() {
   Print "Create spot instance"
-  PRIVATE_IP=(aws ec2 run-instances \
+  PRIVATE_IP=$(aws ec2 run-instances \
     --image-id $AMI_ID \
     --instance-type t2.micro \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=${COMPONENT}}]" \
