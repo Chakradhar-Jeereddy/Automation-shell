@@ -32,6 +32,7 @@ create_ec2() {
   StatCheck $?
 }
 
+
 if [ $1 == "all"]; then
   for compnent in frontendv1 cart mongodb catalogue redis user mysql ship rabbit payment; do
     COMPONENT=$compnent
