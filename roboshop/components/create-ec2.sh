@@ -26,8 +26,7 @@ create_ec2() {
   --instance-type t2.micro \
   --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=${COMPONENT}}]" \
   --instance-market-options "MarketType=spot,SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" \
-  --security-group-ids $SG_ID \
-  | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
+  --security-group-ids $SG_ID | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
   StatCheck $?
   sed -e "s/component/${COMPONENT}/" \
   -e "s/PRIVATE_IP/${PRIVATE_IP}" dnsrecord.json &>/tmp/record.json
