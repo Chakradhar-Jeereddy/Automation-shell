@@ -27,6 +27,8 @@ create_ec2() {
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=${COMPONENT}}]" \
     --instance-market-options "MarketType=spot,SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" \
     --security-group-ids $SG_ID | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
+  StatCheck $?
+  Print "Create DNS record"
   sed -e "s/component/${COMPONENT}/" -e "s/PRIVATE_IP/${PRIVATE_IP}/" components/dnsrecord.json >/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id ${Zone_ID} --change-batch file:///tmp/record.json | jq
   StatCheck $?
