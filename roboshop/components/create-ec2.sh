@@ -4,7 +4,7 @@ source components/common.sh
 
 COMPONENT=$1
 if [ -z "$1" ]; then
-  echo -e "\e31m Name of the machine is needed \e[0m"
+  echo -e "\e[31m Name of the machine is needed \e[0m"
   exit
 fi
 
