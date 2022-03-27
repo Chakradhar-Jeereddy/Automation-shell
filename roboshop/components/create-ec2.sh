@@ -27,3 +27,4 @@ aws ec2 run-instances \
 --security-group-ids $SG_ID \
 | jq
 StatCheck $?
+
