@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source components/common.sh
-Zone_ID=Z0044635YWL0HFQYR5YV
+Zone_ID="Z0044635YWL0HFQYR5YV"
 
 COMPONENT=$1
 if [ -z "$1" ]; then
