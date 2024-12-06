@@ -5,7 +5,7 @@
 #To substitute word using sed s
 #sed 's/root/admin/ passwd
 #to change the file not just output
-#sed -i 's/root/admin' passwd
+#sed -i s/root/admin passwd
 #To delete first line
 #sed -e '1 d' passwd
 #to inset new line
