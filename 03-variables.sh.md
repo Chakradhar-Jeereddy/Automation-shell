@@ -1,3 +1,4 @@
+```
 #!/bin/bash
 
 #Variable
@@ -6,6 +7,16 @@
 #In bash shell we declare variable as VAR=DATA
 #In bash shell we access the variables as $VAR or ${var}
 #Special characters not allowed and also name can not start with number
+
+### Parameters
+echo $0 #name of the script
+echo $1 #first argument
+echo $2 #second argument
+echo $* and echo $@ all prameters
+echo $USER
+echo $HOME
+echo $$ #process ID of the process executed the script
+echo $! #Background process id
 
 a=100
 b=devops
@@ -41,4 +52,5 @@ echo All values of arry   = ${c[*]}
 #to send values for variables in program we use environment variables, to be accessible from scripts
 
 echo Training = $TRAINING
+```
 
