@@ -32,3 +32,10 @@ fi
 if [ -s chakra ]; then 
 	echo "file is not empty"
 fi
+
+# Multiple conditions
+a=10
+b=30
+if [[ a -ge 20 && b -ge 20 ]]; then echo "true"; else echo "false"; fi
+
+if [[ a -ge 20 || b -ge 20 ]]; then echo "true"; else echo "false"; fi
