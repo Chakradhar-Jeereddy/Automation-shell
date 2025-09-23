@@ -7,6 +7,7 @@
 #Adding color codes (31-Red, 32-green,34-blue,0-reset) e\[<code>m
 #Adding tee command to write the std output to console and logfile, use -a option to append
 #Logging start time of the script execution.
+
 G=$(echo -e "\e[32m")
 R=$(echo -e "\e[31m")
 B=$(echo -e "\e[34m")
