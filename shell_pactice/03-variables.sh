@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#There should be no space between the variable name and the equal sign. 
+#If there is a space, it will throw an error.
 PERSON1="Ramesh"
 PERSON2="Suresh"
 
