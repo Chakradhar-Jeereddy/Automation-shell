@@ -31,7 +31,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 #@  - is used to pass multiple arguments to a function
 
 for package in $@; do
-    dnf list installed #package &>> $LOG_FILE
+    dnf list installed $package &>> $LOG_FILE
     if [ $? -ne 0 ]; then
         dnf install $package -y &>> $LOG_FILE
         VALIDATE $? $package
