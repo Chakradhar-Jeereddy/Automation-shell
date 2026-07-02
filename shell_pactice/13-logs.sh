@@ -20,7 +20,7 @@ mkdir -p $LOG_FOLDER
 
 USERID=$(id -u)
 
-if [ $USERUD -ne 0 ]; then
+if [ $USERID -ne 0 ]; then
     echo -e "${R}Please run this script with root privileges${N}"
     exit 1 #failure if other then 0
 fi
