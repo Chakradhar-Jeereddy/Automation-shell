@@ -7,11 +7,11 @@
 number=$1
 
 if [ $number -lt 10 ]; then
-   echo "Given $number is less than 10"
+   echo "Given number $number is less than 10"
 elif [ $number -eq 10 ]; then
-    echo "Given $number is equal to 10"
+    echo "Given number $number is equal to 10"
 else
-   echo "Geven $number is greater than 10"
+   echo "Given number $number is greater than 10"
 fi
 
 # -gt
@@ -21,6 +21,6 @@ fi
 
 #find even number
 if [ $(($number % 2)) -eq 0 ]; then
-    echo "Given $numnber is even number"
+    echo "Given number $number is even number"
 else
-    echo "Given $number is odd number"
+    echo "Given number $number is odd number"
