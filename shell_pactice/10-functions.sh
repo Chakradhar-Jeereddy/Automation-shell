@@ -7,7 +7,7 @@ if [ $userid -ne 0 ]; then
 fi
 
 validate() {
-    if [ $1 -ne 0 ]" then
+    if [ $1 -ne 0 ]; then
         echo "Installing $2 is failed"
         exit 1
     else
@@ -19,4 +19,4 @@ dnf install mysql -y
 validate $? mysql
 
 dnf install nginx -y
-validate $> nginx
+validate $? nginx
