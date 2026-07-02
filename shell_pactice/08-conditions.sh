@@ -24,3 +24,4 @@ if [ $(($number % 2)) -eq 0 ]; then
     echo "Given number $number is even number"
 else
     echo "Given number $number is odd number"
+fi
