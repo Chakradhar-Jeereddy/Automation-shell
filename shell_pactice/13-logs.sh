@@ -18,6 +18,7 @@ SCRIPT_NAME=$( echo $0| cut -d '.' -f1 )
 LOG_FILE=$LOG_FOLDER/$SCRIPT_NAME.log
 mkdir -p $LOG_FOLDER
 
+echo "Script started executed at: $(date)" | tee -a $LOG_FILE
 USERID=$(id -u)
 
 if [ $USERID -ne 0 ]; then
@@ -27,27 +28,27 @@ fi
 
 validate() {
     if [ $1 -ne 0 ]; then
-        echo -e "${R}Installing $2 is failed${N}"
+        echo -e "${R}Installing $2 is failed${N}" | tee -a $LOG_FILE
         exit 1
     else
-        echo -e "${G}Installing $2 is Success${N}"
+        echo -e "${G}Installing $2 is Success${N}" | tee -a $LOG_FILE
     fi
 }
 
-dnf list installed mysql &> $LOG_FILE
+dnf list installed mysql &>> $LOG_FILE
 #Install if not found
 if [ $? -ne 0 ]; then
-   dnf install mysql -y
+   dnf install mysql -y &>> $LOG_FILE
    validate $? mysql
 else
-    echo -e "Nginx already exist ... $Y SKIPPING $N"
+    echo -e "MySQL already exist ... $Y SKIPPING $N" | tee -a $LOG_FILE
 fi
 
-dnf list installed nginx &> $LOG_FILE
+dnf list installed nginx &>> $LOG_FILE
 #Install if not found
 if [ $? -ne 0 ]; then
-  dnf install nginx -y
+  dnf install nginx -y &>> $LOG_FILE
   validate $? nginx
 else
-    echo -e "Nginx already exist ... $Y SKIPPING $N"
+    echo -e "Nginx already exist ... $Y SKIPPING $N" | tee -a $LOG_FILE
 fi
