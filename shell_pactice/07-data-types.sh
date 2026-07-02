@@ -13,7 +13,7 @@ echo "The sum of $Number1 and $Number2 and $NAME is: $SUM"
 
 #Array in shell scripting
 #Index starts from 0.
-LEADERS=("MODI","TRUMP","PUTIN")
+LEADERS=("MODI" "TRUMP" "PUTIN")
 
 echo "All leaders are: $LEADERS[@]"
 echo "First leader is: ${LEADERS[0]}"
