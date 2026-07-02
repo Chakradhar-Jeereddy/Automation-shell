@@ -18,3 +18,9 @@ fi
 # -lt
 # -eq
 # -ne
+
+#find even number
+if [ $(($number % 2)) -eq 0 ]; then
+    echo "Given $numnber is even number"
+else
+    echo "Given $number is odd number"
