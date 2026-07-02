@@ -1,10 +1,22 @@
 #!/bin/bash
 
+#Redirections
+# > overwrite the file with standard output
+# >> append the file with standard output
+# 2> overwrite the file with standard error
+# 2>> append the file with standard error
+# &> overwrite the file with standard output and standard error
+
 USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+
+LOG_FOLDER=/var/log/shell_script
+SCRIPT_NAME=$( echo $0| cut -d '.' -f1 )
+LOG_FILE=$LOG_FOLDER/$SCRIPT_NAME.log
+mkdir -p $LOG_FOLDER
 
 USERID=$(id -u)
 
@@ -22,16 +34,16 @@ validate() {
     fi
 }
 
-dnf list installed mysql
+dnf list installed mysql &> $LOG_FILE
 #Install if not found
 if [ $? -ne 0 ]; then
    dnf install mysql -y
    validate $? mysql
 else
-    echo -e "MySQL already exist ... $Y SKIPPING $N"
+    echo -e "Nginx already exist ... $Y SKIPPING $N"
 fi
 
-dnf list installed nginx
+dnf list installed nginx &> $LOG_FILE
 #Install if not found
 if [ $? -ne 0 ]; then
   dnf install nginx -y
