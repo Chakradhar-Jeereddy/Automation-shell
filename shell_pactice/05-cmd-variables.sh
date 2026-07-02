@@ -1,6 +1,8 @@
 #!/bin/bash
 #command is ()
 
+#date +%Y-%m-%d-%H-%M-%S
+#date +%F
 DATE=$(date +%F)
 START_TIME=$(date +s)
 sleep 10
