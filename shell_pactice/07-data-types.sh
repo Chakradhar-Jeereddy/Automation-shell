@@ -15,7 +15,7 @@ echo "The sum of $Number1 and $Number2 and $NAME is: $SUM"
 #Index starts from 0.
 LEADERS=("MODI" "TRUMP" "PUTIN")
 
-echo "All leaders are: $LEADERS[@]"
+echo "All leaders are: ${LEADERS[@]}"
 echo "First leader is: ${LEADERS[0]}"
 echo "Second leader is: ${LEADERS[1]}"
 echo "Third leader is: ${LEADERS[2]}"
