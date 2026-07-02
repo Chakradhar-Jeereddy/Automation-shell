@@ -22,8 +22,16 @@ validate() {
     fi
 }
 
-dnf install mysql -y
-validate $? mysql
+dnf list installed mysql
+#Install if not found
+if [ $? -ne 0 ]; then
+   dnf install mysql -y
+   validate $? mysql
+fi
 
-dnf install nginx -y
-validate $? nginx
+dnf list installed nginx
+#Install if not found
+if [ $? -ne 0 ]; then
+  dnf install nginx -y
+  validate $? nginx
+fi
