@@ -6,7 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-
+script_dir=$(pwd)
 script_name=$( echo $0|cut -d "." -f1 )
 log_folder="/var/log/shell-roboshop"
 log_file="/$log_folder/${script_name}.log"
@@ -47,7 +47,7 @@ fi
 mkdir -p /app
 validate $? "Creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip  &>> $log_file
 validate $? "Downloading application"
 
 cd /app
@@ -62,10 +62,29 @@ validate $? "Extracting application code"
 npm install  &>> $log_file
 validate $? "Installing dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp $script_dir/catalogue-service /etc/systemd/system/catalogue.service
 validate $? "Configuring catalogue service"
 
 systemctl daemon-reload
 
 systemctl enable --now catalogue  &>> $log_file
 validate $? "Enabling and starting the service"
+
+cp $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
+validate $? "Copy mongo repo"
+
+dnf install mongodb-mongosh -y &>>$log_file
+validate $? "Install MongoDB client"
+
+
+INDEX=$(mongosh mongodb.chakra86.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+
+if [ $INDEX -le 0 ]; then
+    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$log_file
+    validate $? "Load catalogue products"
+else
+    echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
+fi
+
+systemctl restart catalogue
+validate $? "Restarted catalogue"

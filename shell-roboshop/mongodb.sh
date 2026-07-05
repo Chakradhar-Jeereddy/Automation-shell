@@ -6,6 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+script_dir=$(pwd)
 script_name=$( echo $0|cut -d "." -f1 )
 log_folder="/var/log/shell-roboshop"
 log_file="/$log_folder/${script_name}.log"
@@ -29,9 +30,7 @@ validate() {
 
 
 
-
-
-cp mongo-repo /etc/yum.repos.d/mongo.repo
+cp $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
 validate $? "Adding mongodb repo"
 
 dnf list installed mongodb-org &>>  $log_file
