@@ -6,6 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+mongodb_host=mongodb.chakra86.store
 script_dir=$(pwd)
 script_name=$( echo $0|cut -d "." -f1 )
 log_folder="/var/log/shell-roboshop"
@@ -77,10 +78,10 @@ dnf install mongodb-mongosh -y &>>$log_file
 validate $? "Install MongoDB client"
 
 
-INDEX=$(mongosh mongodb.chakra86.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+INDEX=$(mongosh $mongodb_host --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 
 if [ $INDEX -le 0 ]; then
-    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$log_file
+    mongosh --host $mongodb_host </app/db/master-data.js &>>$log_file
     validate $? "Load catalogue products"
 else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
