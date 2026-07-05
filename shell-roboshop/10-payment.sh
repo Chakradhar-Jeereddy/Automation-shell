@@ -6,67 +6,59 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-mysql_host=mysql.chakra86.store
-script_dir=$(pwd)
-script_name=$( echo $0|cut -d "." -f1 )
-log_folder="/var/log/shell-roboshop"
-log_file="/$log_folder/${script_name}.log"
-mkdir -p $log_folder
+LOGS_FOLDER="/var/log/shell-roboshop"
+SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+SCRIPT_DIR=$PWD
+MONGODB_HOST=mongodb.daws86s.fun
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-script/16-logs.log
+MYSQL_HOST=mysql.chakra86.store
 
-userid=$(id -u)
+mkdir -p $LOGS_FOLDER
+echo "Script started executed at: $(date)" | tee -a $LOG_FILE
 
-if [ $userid -ne 0 ]; then
-   echo -e "$R Please use run the script with root privileges $N"
-   exit 1
+if [ $USERID -ne 0 ]; then
+    echo "ERROR:: Please run this script with root privelege"
+    exit 1 # failure is other than 0
 fi
 
-validate() {
- if [ $1 -ne 0 ]; then
-    echo -e "$R $2 ...FAILED  $N" | tee -a  $log_file
-    exit 1
- else
-    echo -e "$G $2 ....SUCCESS $N"  | tee -a  $log_file
- fi
+VALIDATE(){ # functions receive inputs through args just like shell script args
+    if [ $1 -ne 0 ]; then
+        echo -e "$2 ... $R FAILURE $N" | tee -a $LOG_FILE
+        exit 1
+    else
+        echo -e "$2 ... $G SUCCESS $N" | tee -a $LOG_FILE
+    fi
 }
 
+dnf install python3 gcc python3-devel -y &>>$LOG_FILE
 
-dnf install python3 gcc python3-devel -y  &>> $log_file
-validate $? "Installing python"
-    
-
-id roboshop  &>> $log_file
+id roboshop &>>$LOG_FILE
 if [ $? -ne 0 ]; then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>> $log_file
-    validate $? "Adding application user"
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+    VALIDATE $? "Creating system user"
 else
-   echo -e "\e[33m User already exists on the system ...skipping \e[0m" | tee -a $log_file
+    echo -e "User already exist ... $Y SKIPPING $N"
 fi
 
 mkdir -p /app
-validate $? "Creating app directory"
+VALIDATE $? "Creating app directory"
 
-curl -L -o  /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip   &>> $log_file
-validate $? "Downloading application"
+curl -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>>$LOG_FILE
+VALIDATE $? "Downloading payment application"
 
-cd /app
-validate $? "Switching to App directory"
+cd /app 
+VALIDATE $? "Changing to app directory"
 
 rm -rf /app/*
-validate $? "Removing existing code"
+VALIDATE $? "Removing existing code"
 
-unzip /tmp/payment.zip  &>> $log_file
-validate $? "Extracting application code"
+unzip /tmp/payment.zip &>>$LOG_FILE
+VALIDATE $? "unzip payment"
 
-pip3 install -r requirements.txt  &>> $log_file
-validate $? "Installing dependencies"
+pip3 install -r requirements.txt &>>$LOG_FILE
 
-cp $script_dir/payment.service /etc/systemd/system/payment.service  &>> $log_file
-validate $? "Configuring shipping service"
-
+cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service
 systemctl daemon-reload
-
-systemctl enable --now payment  &>> $log_file
-validate $? "Enabling and starting the service"
+systemctl enable payment  &>>$LOG_FILE
 
 systemctl restart payment
-validate $? "Restarting payment"
