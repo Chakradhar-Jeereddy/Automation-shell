@@ -29,13 +29,10 @@ validate() {
  fi
 }
 
-dnf list installed python3 gcc python3-devel &>> $log_file
-if [ $? -ne 0 ]; then
-  dnf install python3 gcc python3-devel -y  &>> $log_file
-  validate $? "Installing python"
-else
- echo -e "$Y Python already installed ... skipping $N"
-fi
+
+dnf install python3 gcc python3-devel -y  &>> $log_file
+validate $? "Installing python"
+    
 
 id roboshop  &>> $log_file
 if [ $? -ne 0 ]; then
