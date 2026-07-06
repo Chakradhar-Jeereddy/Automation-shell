@@ -84,7 +84,7 @@ java_setup(){
 }
 
 python_setup(){
-    dnf install python3 gcc python3-devel -y &>>$LOG_FILE
+    dnf install python3 gcc python3-devel -y &>>$log_file
     validate $? "Installing python3"
     pip3 install -r requirements.txt  &>> $log_file
     validate $? "Installing dependencies"
