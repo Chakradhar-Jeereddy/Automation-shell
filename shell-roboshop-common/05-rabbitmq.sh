@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ./common.sh
-app_name=rabbitmq
+app_name=rabbitmq-server
 check_root
 
 cp $script_dir/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>> $log_file
