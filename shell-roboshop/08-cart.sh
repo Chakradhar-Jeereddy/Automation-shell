@@ -63,7 +63,7 @@ validate $? "Extracting application code"
 npm install  &>> $log_file
 validate $? "Installing dependencies"
 
-cp $script_dir/cart.service /etc/systemd/system/cart.service
+cp $script_dir/cart-service /etc/systemd/system/cart.service
 validate $? "Configuring cart service"
 
 systemctl daemon-reload

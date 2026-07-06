@@ -66,7 +66,7 @@ validate $? "Installing dependencies"
 mv target/shipping-1.0.jar shipping.jar  &>> $log_file
 validate $? "Move jar file to app directoty"
 
-cp $script_dir/shipping.service /etc/systemd/system/shipping.service  &>> $log_file
+cp $script_dir/shipping-service /etc/systemd/system/shipping.service  &>> $log_file
 validate $? "Configuring shipping service"
 
 systemctl daemon-reload
