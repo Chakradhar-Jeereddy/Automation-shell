@@ -58,7 +58,7 @@ app_setup(){
   validate $? "Extracting application code"
 }
 
-setup_nodejs(){
+nodejs_setup(){
     dnf module disable nodejs -y &>> $log_file
     validate $? "Disabling current module"
     dnf module enable nodejs:20 -y &>> $log_file
