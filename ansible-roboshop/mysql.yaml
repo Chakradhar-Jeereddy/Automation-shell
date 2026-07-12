@@ -11,6 +11,7 @@
 
   - name: Start mysql
     systemd_service:
+       name: mysql-server
        enabled: yes
        state: started
 
