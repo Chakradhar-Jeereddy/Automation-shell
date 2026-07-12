@@ -76,7 +76,7 @@
        state: present
 
   - name: check schema exists
-    shell: mongosh $mongodb.chakra86.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+    shell: mongosh mongodb.chakra86.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
     register: result
 
   - name: print log
