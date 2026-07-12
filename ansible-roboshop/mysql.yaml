@@ -1,0 +1,18 @@
+---
+- name: configure mysql
+  hosts: mysql
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: Install mysql
+    dnf:
+       name: mysql-server
+       state: present
+
+  - name: Start mysql
+    systemd_service:
+       enabled: yes
+       state: started
+
+  - name: Reset root password
+    command: mysql_secure_installation --set-root-pass RoboShop@1
