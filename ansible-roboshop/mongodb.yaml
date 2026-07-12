@@ -2,6 +2,7 @@
 - name: copy mongodb repo
   hosts: mongodb
   gather_facts: no
+  become: yes
   tasks:
   - name: copy mongodb repo
     copy:
