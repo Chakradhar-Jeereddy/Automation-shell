@@ -1,0 +1,84 @@
+---
+- name: configure catalogue
+  hosts: catalogue
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: disable default nodejs
+    command: dnf module disable nodejs -y
+
+  - name: emable nodejs:20
+    command: dnf module enable nodejs:20 -y
+
+  - name: install nodejs
+    dnf:
+      name: nodejs 
+      state: present
+  
+  - name: create roboshop user
+    user:
+      name: roboshop
+      system: true
+      home: /app
+      comment: "roboshop system user"
+      shell: /sbin/nologin
+  
+  - name: remove app directory
+    file:
+      path: /app
+      state: absent
+  
+  - name: remove file
+    file: 
+      path: /tmp/catalogue.zip
+      state: absent
+  
+  - name: create app directory
+    file:
+       path: /app
+       state: directory
+
+  - name: download app code
+    get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+      dest: /tmp/catalogue.zip
+
+  - name: Unzip the app code
+    unarchive:
+      src:  /tmp/catalogue.zip
+      dest: /app
+      remote_src: yes
+
+  - name: install dependencies
+    community.general.npm:
+      path: /app
+  
+  - name: copy catalogue service file
+    copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service
+
+  - name: reload daemon
+    systemd_service:
+      name: catalogue.service
+      daemon_reload: yes
+      enabled: yes
+      state: started
+
+  - name: copy mongodb repo
+    copy:
+       src: mongo.repo
+       dest: /etc/yum.repos.d/mongo.repo
+  
+  - name: install mongo client
+    dnf:
+       name: mongodb-mongosh
+       state: present
+
+  - name: check schema exists
+    shell: mongosh $mongodb_host --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+    register: result
+
+  - name: print log
+    debug:
+      msg: "{{ result }}"
