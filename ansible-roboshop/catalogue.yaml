@@ -80,7 +80,7 @@
     register: result
 
   - name: Load schema 
-    shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+    shell: mongosh --host  mongodb.chakra86.store </app/db/master-data.js
     when: result.stdout | int < 0
 
   - name: reload daemon
