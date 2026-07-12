@@ -1,32 +1,32 @@
 ---
-- name: mongodb
+- name: copy mongodb repo
   hosts: mongodb
   gather_facts: no
-  become: yes
   tasks:
   - name: copy mongodb repo
     copy:
-     src: mongo.repo
-     dest: /etc/yum.repos.d/mongo.repo
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+  
+  - name: Install mongodb
+    dnf: 
+      name: mongodb-org
+      state: present 
 
-  - name: install mongodb
-    dnf:
-     name: mongodb-org
-     state: present
-
-  - name: start mongodb
-    systemd_service:
-      name: mongod
-      enabled: yes
-      state: started
-
-  - name: Update config
+  - name: Start service
+    systemd_service: 
+       name: mongod
+       enabled: yes
+       state: started
+  
+  - name: replace IP
     replace:
-     path: /etc/mongod.conf
-     regexp: "127.0.0.1"
-     replace: 0.0.0.0
-
-  - name: start mongodb
-    systemd_service:
-      name: mongod
-      state: restarted
+       path: /etc/mongod.conf
+       regexp: "127.0.0.1"
+       replace: 0.0.0.0
+  
+  - name: Start service
+    systemd_service: 
+       name: mongod
+       enabled: yes
+       state: restarted
