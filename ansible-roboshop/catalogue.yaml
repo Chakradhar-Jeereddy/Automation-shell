@@ -81,7 +81,7 @@
 
   - name: Load schema 
     shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
-    when: result.out | int < 0
+    when: result.stdout | int < 0
 
   - name: reload daemon
     systemd_service:
