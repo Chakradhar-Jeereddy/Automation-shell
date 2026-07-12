@@ -79,6 +79,11 @@
     shell: mongosh mongodb.chakra86.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
     register: result
 
-  - name: print log
-    debug:
-      msg: "{{ result }}"
+  - name: Load schema 
+    shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+    when: result.out | int < 0
+
+  - name: reload daemon
+    systemd_service:
+      name: catalogue
+      state: restarted
