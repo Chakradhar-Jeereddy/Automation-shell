@@ -7,7 +7,7 @@
   - name: disable default nodejs
     command: dnf module disable nodejs -y
 
-  - name: emable nodejs:20
+  - name: enable nodejs:20
     command: dnf module enable nodejs:20 -y
 
   - name: install nodejs
