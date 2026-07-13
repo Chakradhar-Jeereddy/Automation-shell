@@ -1,0 +1,95 @@
+--- 
+- name: configure maven
+  hosts: shipping
+  gather_stats: no
+  become: yes
+  tasks:
+  - name: Install Maven via the system package manager
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - maven
+    - mysql
+  
+  - name: install mysql python libraries
+    ansible.builtin.pip:
+      executable: pip3.9
+      name: "{{ item }}"
+    loop:
+    - cryptography
+    - PyMySQL
+
+  - name: create roboshop user
+    user:
+      name: roboshop
+      system: true
+      home: /app
+      comment: "roboshop system user"
+      shell: /sbin/nologin
+  
+  - name: remove app directory
+    file:
+      path: /app
+      state: absent
+  
+  - name: remove file
+    file: 
+      path: /tmp/shipping.zip
+      state: absent
+  
+  - name: create app directory
+    file:
+       path: /app
+       state: directory
+
+  - name: download app code
+    get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
+      dest: /tmp/shipping.zip
+
+  - name: Unzip the app code
+    unarchive:
+      src:  /tmp/shipping.zip
+      dest: /app
+      remote_src: yes
+
+  - name: install dependencies
+    command: mvn clean package
+    args:
+    chdir: /app
+
+  - name: move jarfile
+    command: mv target/shipping-1.0.jar shipping.jar 
+    args:
+    chdir: /app
+
+  - name: copy shipping service file
+    copy:
+      src: shipping.service
+      dest: /etc/systemd/system/shipping.service
+
+  - name: reload daemon
+    systemd_service:
+      name: shipping
+      daemon_reload: yes
+      enabled: yes
+      state: started
+  
+  - name: import shipping data into mysql
+    community.mysql.mysql_db:
+      state: import
+      name: all
+      login_host: mysql.daws86s.fun
+      login_user: root
+      login_password: RoboShop@1
+      target: "{{ item }}"
+    loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql 
+    - /app/db/master-data.sql
+
+  - name: restart shipping
+    systemd_service:
+      name: shipping
+      state: restarted
