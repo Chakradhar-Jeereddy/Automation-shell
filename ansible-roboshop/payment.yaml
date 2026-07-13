@@ -5,7 +5,7 @@
   become: yes
   tasks:
   - name: install python
-    dbf:
+    dnf:
       name: "{{ item }}"
       state: present
     loop:
