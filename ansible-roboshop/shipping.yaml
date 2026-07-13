@@ -80,7 +80,7 @@
     community.mysql.mysql_db:
       state: import
       name: all
-      login_host: mysql.daws86s.fun
+      login_host: mysql.chakra86.store
       login_user: root
       login_password: RoboShop@1
       target: "{{ item }}"
