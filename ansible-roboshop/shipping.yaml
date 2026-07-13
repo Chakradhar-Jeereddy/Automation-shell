@@ -57,7 +57,7 @@
   - name: install dependencies
     command: mvn clean package
     args:
-    chdir: /app
+     chdir: /app
 
   - name: move jarfile
     command: mv target/shipping-1.0.jar shipping.jar 
