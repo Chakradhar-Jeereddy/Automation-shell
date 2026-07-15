@@ -1,0 +1,34 @@
+  - name: create roboshop user
+    user:
+      name: roboshop
+      system: true
+      home: /app
+      comment: "roboshop system user"
+      shell: /sbin/nologin
+  
+  # Safe to remove directory, because 2nd time if we run it will download freshly. no error if does not exist
+  - name: remove app directory
+    file:
+      path: /app
+      state: absent
+  
+  - name: delete {{ component }} file
+    file: 
+      path: /tmp/{{ component }}.zip
+      state: absent
+  
+  - name: create app directory
+    file:
+       path: /app
+       state: directory
+
+  - name: download {{ component }} application
+    get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip 
+      dest: /tmp/{{ component }}.zip
+
+  - name: extract {{ component }} application
+    unarchive:
+      src:  /tmp/"{{ component }}".zip
+      dest: /app
+      remote_src: yes

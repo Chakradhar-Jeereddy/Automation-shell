@@ -1,0 +1,17 @@
+  - name: Install Maven via the system package manager
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - maven
+    - mysql
+
+  - name: install dependencies
+    command: mvn clean package
+    args:
+     chdir: /app
+
+  - name: move jarfile
+    command: mv target/shipping-1.0.jar shipping.jar 
+    args:
+     chdir: /app

@@ -1,0 +1,34 @@
+---
+- name: app setup
+  import_role:
+    name: commons
+    tasks_from: app_setup.yaml
+
+- name: nodejs setup
+  import_role:
+    name: commons
+    tasks_from: nodejs_setup.yaml
+
+
+- name: copy mongodb repo
+  copy:
+       src: mongo.repo
+       dest: /etc/yum.repos.d/mongo.repo
+  
+- name: install mongo client
+  dnf:
+       name: mongodb-mongosh
+       state: present
+
+- name: connnect to mongodb catalogue
+  shell: mongosh mongodb.chakra86.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+  register: result
+
+- name: Load schema 
+  shell: mongosh --host  mongodb.chakra86.store </app/db/master-data.js
+  when: result.stdout | int < 0
+
+- name: systemd setup
+  import_role:
+    name: commons
+    tasks_from: systemd_setup.yaml

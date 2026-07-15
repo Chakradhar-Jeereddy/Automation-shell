@@ -1,0 +1,10 @@
+mongo_host: mongodb.chakra86.store
+redis_host: redis.chakra86.store
+mysql_host: mysql.chakra86.store
+rabbitmq_host: rabbitmq.chakra86.store
+catalogue_host: catalogue.chakra86.store
+cart_host: cart.chakra86.store
+user_host: user.chakra86.store
+shipping_host: shipping.chakra86.store
+payment_host: payment.chakra86.store
+frontend_host: frontend.chakra86.store

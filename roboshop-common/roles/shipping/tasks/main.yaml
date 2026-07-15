@@ -1,0 +1,36 @@
+--- 
+  - name: app setup
+    import_role:
+      name: commons
+      tasks_from: app_setup.yaml
+
+  - name: java setup
+    import_role:
+      name: commons
+      tasks_from: maven_setup.yaml
+  
+  - name: install mysql python libraries
+    ansible.builtin.pip:
+      executable: pip3.9
+      name: "{{ item }}"
+    loop:
+    - cryptography
+    - PyMySQL
+
+  - name: import shipping data into mysql
+    community.mysql.mysql_db:
+      state: import
+      name: all
+      login_host: mysql.chakra86.store
+      login_user: root
+      login_password: RoboShop@1
+      target: "{{ item }}"
+    loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql 
+    - /app/db/master-data.sql
+
+  - name: systemd setup
+    import_role:
+      name: commons
+      tasks_from: systemd_setup.yaml
