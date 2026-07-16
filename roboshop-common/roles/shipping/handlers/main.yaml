@@ -1,0 +1,5 @@
+---
+- name: daemon reload
+  systemd_service:
+    name: "{{ component }}"
+    daemon_reload: true
