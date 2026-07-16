@@ -1,0 +1,13 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+
+hostnames:
+  - name: 'private-ip-address'
+
+filters:
+  # All instances with their state as `running`
+  instance-state-name: running
+
+keyed_groups:
+- key: 'roboshop'
