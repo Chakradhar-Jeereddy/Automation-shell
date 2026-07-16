@@ -1,0 +1,6 @@
+---
+- name: test import and include
+  hosts: localhost
+  connection: local
+  roles: 
+    - import_includeroles

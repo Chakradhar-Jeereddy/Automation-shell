@@ -1,0 +1,5 @@
+---
+- name: include role
+  include_role:
+    name: commons
+    tasks_from: test.yaml

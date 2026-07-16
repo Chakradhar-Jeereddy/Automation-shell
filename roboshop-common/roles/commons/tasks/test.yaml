@@ -1,0 +1,4 @@
+---
+- name: print my name
+  debug: 
+    msg: "print my name"

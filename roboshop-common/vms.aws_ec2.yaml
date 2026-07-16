@@ -9,5 +9,8 @@ filters:
   # All instances with their state as `running`
   instance-state-name: running
 
+compose:
+  ansible_host: private_ip_address
+
 keyed_groups:
-- key: 'roboshop'
+- key: roboshop'
