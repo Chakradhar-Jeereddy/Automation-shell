@@ -29,6 +29,6 @@
 
   - name: extract {{ component }} application
     unarchive:
-      src:  /tmp/"{{ component }}".zip
+      src:  /tmp/{{ component }}.zip
       dest: /app
       remote_src: yes
